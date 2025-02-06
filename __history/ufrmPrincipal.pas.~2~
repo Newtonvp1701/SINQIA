@@ -1,0 +1,40 @@
+unit ufrmPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.Menus;
+
+type
+  TForm1 = class(TForm)
+    mnuPrincipal: TMainMenu;
+    mnuCadastro: TMenuItem;
+    mnuCadClientes: TMenuItem;
+    mnuCadCidades: TMenuItem;
+    mnuRelatorios: TMenuItem;
+    mnuRepClientes: TMenuItem;
+    mnuRepCidades: TMenuItem;
+    mnuSair: TMenuItem;
+    StatusBar1: TStatusBar;
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.FormShow(Sender: TObject);
+begin
+  Statusbar1.panelS[0].text:=FormatDatetime('DD/MM/YY',DATE);//Para data[code]
+  Statusbar1.Panels[1].text:=FormatDatetime('HH:MM:SS',TIME);// para Hora
+end;
+
+end.

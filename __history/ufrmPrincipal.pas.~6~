@@ -1,0 +1,78 @@
+unit ufrmPrincipal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.Menus;
+
+type
+  TfrmPrincipal = class(TForm)
+    mnuPrincipal: TMainMenu;
+    mnuCadastro: TMenuItem;
+    mnuCadClientes: TMenuItem;
+    mnuCadCidades: TMenuItem;
+    mnuRelatorios: TMenuItem;
+    mnuRepClientes: TMenuItem;
+    mnuRepCidades: TMenuItem;
+    mnuSair: TMenuItem;
+    StatusBar1: TStatusBar;
+    procedure FormShow(Sender: TObject);
+    procedure mnuSairClick(Sender: TObject);
+    procedure mnuCadClientesClick(Sender: TObject);
+    procedure mnuCadCidadesClick(Sender: TObject);
+    procedure mnuRepClientesClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmPrincipal: TfrmPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+uses ufrmCadClientes, ufrmCadCidades;
+
+procedure TfrmPrincipal.FormShow(Sender: TObject);
+begin
+  Statusbar1.panelS[0].text:=FormatDatetime('DD/MM/YY',DATE);//Para data[code]
+  Statusbar1.Panels[1].text:=FormatDatetime('HH:MM:SS',TIME);// para Hora
+end;
+
+procedure TfrmPrincipal.mnuCadCidadesClick(Sender: TObject);
+begin
+  try
+  if not Assigned(frmCadCidades) then
+    frmCadCidades := TfrmCadCidades.Create(Self);
+    frmCadCidades.ShowModal;
+  finally
+    FreeAndNil(frmCadCidades);
+  end;
+end;
+
+procedure TfrmPrincipal.mnuCadClientesClick(Sender: TObject);
+begin
+  try
+  if not Assigned(frmCadClientes) then
+    frmCadClientes := TfrmCadClientes.Create(Self);
+    frmCadClientes.ShowModal;
+  finally
+    FreeAndNil(frmCadClientes);
+  end;
+end;
+
+procedure TfrmPrincipal.mnuRepClientesClick(Sender: TObject);
+begin
+// relatórios de clientes
+end;
+
+procedure TfrmPrincipal.mnuSairClick(Sender: TObject);
+begin
+  Close;
+end;
+
+end.

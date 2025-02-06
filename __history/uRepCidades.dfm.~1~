@@ -1,0 +1,49 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Relat'#243'rio de Cidades'
+  ClientHeight = 442
+  ClientWidth = 827
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  TextHeight = 15
+  object pnBotoes: TPanel
+    Left = 0
+    Top = 355
+    Width = 827
+    Height = 87
+    Align = alBottom
+    TabOrder = 0
+    ExplicitLeft = -150
+    ExplicitTop = 341
+    ExplicitWidth = 869
+    object btnVisualizar: TButton
+      Left = 64
+      Top = 23
+      Width = 177
+      Height = 25
+      Caption = 'Visualizar'
+      TabOrder = 0
+    end
+    object btnImprimir: TButton
+      Left = 336
+      Top = 23
+      Width = 177
+      Height = 25
+      Caption = 'Imprimir'
+      TabOrder = 1
+    end
+    object btnSair: TButton
+      Left = 592
+      Top = 23
+      Width = 177
+      Height = 25
+      Caption = 'Sair'
+      TabOrder = 2
+    end
+  end
+end

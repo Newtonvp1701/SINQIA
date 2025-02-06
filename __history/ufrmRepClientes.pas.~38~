@@ -1,0 +1,261 @@
+unit ufrmRepClientes;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, QuickRpt, Vcl.ExtCtrls,
+  Vcl.StdCtrls, Vcl.Mask, QRCtrls, Vcl.DBCtrls;
+
+type
+  TfrmRepClientes = class(TForm)
+    qryEstados: TFDQuery;
+    dsEstados: TDataSource;
+    pnBotoes: TPanel;
+    btnVisualizar: TButton;
+    btnImprimir: TButton;
+    Panel1: TPanel;
+    btnSair: TButton;
+    gbCodCliente: TGroupBox;
+    edtCodIni: TLabeledEdit;
+    edtCodFin: TLabeledEdit;
+    cbEstado: TComboBox;
+    lblEstado: TLabel;
+    gbCodCidade: TGroupBox;
+    edtCodCidIni: TLabeledEdit;
+    edtcodCidFin: TLabeledEdit;
+    rgSelecao: TRadioGroup;
+    procedure btnVisualizarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btnSairClick(Sender: TObject);
+    procedure rgSelecaoClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmRepClientes: TfrmRepClientes;
+
+implementation
+
+{$R *.dfm}
+
+uses uDM, uRepClientes, uRepClientesporCidade, ufrmPrincipal;
+
+procedure TfrmRepClientes.btnSairClick(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TfrmRepClientes.btnVisualizarClick(Sender: TObject);
+begin
+
+  if rgSelecao.ItemIndex = 3 then
+  begin
+
+    if not Assigned(repClientesPorCidades) then
+        repClientesPorCidades := TrepClientesPorCidades.Create(Self);
+
+    with repClientesPorCidades.qryClientes do
+    begin
+      Close;
+      sql.Clear;
+      Connection := dm.dbConn;
+      sql.Add('select * from clientes ');
+      sql.Add('order by nome_cidade, nome ');
+      Open;
+      if not IsEmpty then
+      begin
+       if not Assigned(repClientesPorCidades) then
+            repClientesPorCidades := TrepClientesPorCidades.Create(Self);
+
+          if rgSelecao.ItemIndex = 0 then
+          begin
+            // colocar no título os parâmetros do relatório
+            repClientesPorCidades.qrlParametros.Caption := 'Clientes agrupados por Cidade ';
+          end;
+
+        repClientesPorCidades.qRepClientesporCidade.Prepare;
+
+        if (Sender = btnVisualizar) then
+          repClientesPorCidades.qRepClientesporCidade.Preview
+        else if (Sender = btnImprimir) then
+          repClientesPorCidades.qRepClientesporCidade.Print;
+
+      end;
+    end;
+
+    cbEstado.ItemIndex    := 0;
+    cbEstado.Enabled      := False;
+    gbCodCidade.Enabled   := False;
+    gbCodCliente.Enabled  := False;
+    edtCodIni.Enabled     := False;
+    edtCodFin.Enabled     := False;
+    gbCodCidade.Enabled   := False;
+    edtCodCidIni.Enabled  := False;
+    edtcodCidFin.Enabled  := False;
+
+    Exit;
+  end;
+
+  if not Assigned(repClientes) then
+    repClientes := TrepClientes.Create(Self);
+
+  with repClientes.qryClientes do
+  begin
+    Close;
+    sql.Clear;
+    Connection := dm.dbConn;
+    sql.Add('select * from dbo.clientes ');
+    if rgSelecao.ItemIndex = 0 then
+    begin
+      sql.Add('where id_cliente >=:pCodIni and id_cliente <=:pCodFin ');
+      sql.Add('order by id_cliente');
+      ParamByName('pCodIni').AsInteger := StrToInt(edtCodIni.Text);
+      ParamByName('pCodFin').AsInteger := StrToInt(edtCodFin.Text);
+      Open;
+    end;
+    if rgSelecao.ItemIndex = 1 then
+    begin
+      sql.Add(' where codigo_cidade >=:pCodCidIni and codigo_cidade <=:pCodCidFin ');
+      sql.Add('order by codigo_cidade, nome');
+      ParamByName('pCodCidIni').AsInteger := StrToInt(edtCodCidIni.Text);
+      ParamByName('pCodCidFin').AsInteger := StrToInt(edtcodCidFin.Text);
+
+      SaveSqlCommand(repClientes.qryClientes);
+
+      Open;
+    end;
+    if rgSelecao.ItemIndex = 2 then
+    begin
+      sql.Add(' where estado =:pEstado ');
+      sql.Add('order by estado, nome');
+      ParamByName('pEstado').AsString := cbEstado.Text;
+      Open;
+    end;
+    if rgSelecao.ItemIndex = 4 then
+    begin
+      sql.Add('order by nome');
+      Open;
+    end;
+
+    if not IsEmpty then
+    begin
+
+      if not Assigned(repClientes) then
+        repClientes := TrepClientes.Create(Self);
+
+      if rgSelecao.ItemIndex = 0 then
+      begin
+        repClientes.qrlParametros.Caption := 'Código Inicial: ' + edtCodIni.Text + ' - cod. Final: ' + edtCodFin.Text;
+      end;
+      if rgSelecao.ItemIndex = 1 then
+      begin
+        repClientes.qrlParametros.Caption := 'Código de Cidade Inicial: ' + edtCodIni.Text + ' - cod. Final: ' + edtCodFin.Text;
+      end;
+      if rgSelecao.ItemIndex = 2 then
+      begin
+        repClientes.qrlParametros.Caption := 'Clientes por Estado: ' + cbEstado.Text;
+      end;
+      if rgSelecao.ItemIndex = 4 then
+      begin
+        repClientes.qrlParametros.Caption := 'Todos os Clientes por ordem alfabética';
+      end;
+
+      repclientes.qRepClientes.Prepare;
+
+      if (Sender = btnVisualizar) then
+        repclientes.qRepClientes.Preview
+      else if (Sender = btnImprimir) then
+        repclientes.qRepClientes.Print;
+
+      cbEstado.ItemIndex    := 0;
+      cbEstado.Enabled      := False;
+      gbCodCidade.Enabled   := False;
+      gbCodCliente.Enabled  := False;
+      edtCodIni.Enabled     := False;
+      edtCodFin.Enabled     := False;
+      gbCodCidade.Enabled   := False;
+      edtCodCidIni.Enabled  := False;
+      edtcodCidFin.Enabled  := False;
+
+
+    end;
+  end;
+end;
+
+
+procedure TfrmRepClientes.FormShow(Sender: TObject);
+var
+  _qryEstados: TFDQuery;
+begin
+  try
+    _qryEstados := TFDQuery.Create(self);
+    with qryEstados do
+    begin
+      Close;
+      sql.Clear;
+      Connection := dm.dbConn;
+      sql.Add('select distinct estado from clientes order by estado ');
+      open;
+      if not IsEmpty then
+      begin
+        cbEstado.Items.Clear;
+        First;
+        while not eof do
+        begin
+          cbEstado.Items.Add(FieldByName('estado').AsString);
+          Next;
+        end;
+      end;
+    end;
+  finally
+    FreeAndNil(_qryEstados);
+  end;
+  cbEstado.ItemIndex := 0;
+
+  cbEstado.Enabled := False;
+  gbCodCidade.Enabled := False;
+  gbCodCliente.Enabled := False;
+
+  edtCodIni.Enabled     := False;
+  edtCodFin.Enabled     := False;
+  gbCodCidade.Enabled   := False;
+  edtCodCidIni.Enabled  := False;
+  edtcodCidFin.Enabled  := False;
+
+
+end;
+
+
+procedure TfrmRepClientes.rgSelecaoClick(Sender: TObject);
+begin
+  case rgSelecao.ItemIndex of
+    0:
+    begin
+     gbCodCliente.Enabled := true;
+     edtCodIni.Enabled := true;
+     edtCodFin.Enabled := True;
+     edtCodIni.SetFocus;
+    end;
+    1:
+    begin
+     gbCodCidade.Enabled := true;
+     edtCodCidIni.Enabled := true;
+     edtcodCidFin.Enabled := True;
+     edtCodCidIni.SetFocus;
+    end;
+    2:
+    begin
+      cbEstado.Enabled := True;
+      cbEstado.SetFocus;
+    end;
+  end;
+end;
+
+end.

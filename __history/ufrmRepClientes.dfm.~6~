@@ -1,0 +1,59 @@
+object frmRepClientes: TfrmRepClientes
+  Left = 0
+  Top = 0
+  Caption = 'Relat'#243'rio de Clientes'
+  ClientHeight = 495
+  ClientWidth = 786
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Scaled = False
+  TextHeight = 15
+  object edtCodIni: TLabeledEdit
+    Left = 64
+    Top = 64
+    Width = 121
+    Height = 23
+    EditLabel.Width = 76
+    EditLabel.Height = 15
+    EditLabel.Caption = 'C'#243'digo Inicial '
+    TabOrder = 0
+    Text = ''
+  end
+  object edtCodFin: TLabeledEdit
+    Left = 64
+    Top = 109
+    Width = 121
+    Height = 23
+    EditLabel.Width = 67
+    EditLabel.Height = 15
+    EditLabel.Caption = 'C'#243'digo Final'
+    TabOrder = 1
+    Text = ''
+  end
+  object Button1: TButton
+    Left = 304
+    Top = 47
+    Width = 177
+    Height = 25
+    Caption = 'Imprimir'
+    TabOrder = 2
+    OnClick = Button1Click
+  end
+  object qryClientes: TFDQuery
+    Active = True
+    Connection = dm.dbConn
+    SQL.Strings = (
+      'select * from dbo.clientes '
+      '')
+    Left = 320
+    Top = 128
+  end
+  object DataSource1: TDataSource
+    Left = 408
+    Top = 128
+  end
+end

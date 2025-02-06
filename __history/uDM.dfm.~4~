@@ -1,0 +1,33 @@
+object dm: Tdm
+  OnCreate = DataModuleCreate
+  Height = 480
+  Width = 640
+  object dbConn: TFDConnection
+    Params.Strings = (
+      'Server=DESKTOP-U7QM62F'
+      'Database=SINQIA'
+      'DriverID=MSSQL')
+    LoginPrompt = False
+    Left = 80
+    Top = 48
+  end
+  object FDGUIxWaitCursor1: TFDGUIxWaitCursor
+    Provider = 'Forms'
+    Left = 232
+    Top = 48
+  end
+  object FDPhysMSSQLDriverLink1: TFDPhysMSSQLDriverLink
+    Left = 384
+    Top = 48
+  end
+  object qryCadClientes: TFDQuery
+    Connection = dbConn
+    Left = 112
+    Top = 168
+  end
+  object dsCadClientes: TDataSource
+    DataSet = qryCadClientes
+    Left = 224
+    Top = 168
+  end
+end

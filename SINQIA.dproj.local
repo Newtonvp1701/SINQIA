@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/12/06 17:10:14.000.669,=C:\Users\newto\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/12/07 00:36:28.000.141,=C:\Users\newto\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/12/07 13:43:51.000.020,=C:\Users\newto\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/12/10 03:47:25.000.290,=C:\Users\newto\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/12/17 16:57:47.000.186,=C:\Users\newto\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/02/01 14:04:25.000.092,=C:\Users\newto\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2025/02/01 14:10:58.000.237,C:\Users\newto\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\source\SINQIA\frmPrincipal.pas</Transaction>
+    <Transaction>2025/02/01 14:10:58.000.237,C:\Users\newto\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\source\SINQIA\frmPrincipal.dfm</Transaction>
+    <Transaction>2025/02/01 14:11:08.000.661,C:\Users\newto\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\source\SINQIA\SINQIA.dproj</Transaction>
+    <Transaction>2025/02/01 14:23:34.000.893,C:\source\SINQIA\frmPrincipal.pas=C:\source\SINQIA\ufrmPrincipal.pas</Transaction>
+    <Transaction>2025/02/01 14:23:34.000.893,C:\source\SINQIA\frmPrincipal.dfm=C:\source\SINQIA\ufrmPrincipal.dfm</Transaction>
+    <Transaction>2025/02/01 14:24:27.000.002,=C:\source\SINQIA\Unit1.pas</Transaction>
+    <Transaction>2025/02/01 14:24:54.000.810,C:\source\SINQIA\Unit1.dfm=C:\source\SINQIA\uDM.dfm</Transaction>
+    <Transaction>2025/02/01 14:24:54.000.810,C:\source\SINQIA\Unit1.pas=C:\source\SINQIA\uDM.pas</Transaction>
+    <Transaction>2025/02/01 15:13:48.000.652,=C:\source\SINQIA\Unit1.pas</Transaction>
+    <Transaction>2025/02/01 15:18:59.000.686,C:\source\SINQIA\Unit1.dfm=C:\source\SINQIA\ufrmCadClientes.dfm</Transaction>
+    <Transaction>2025/02/01 15:18:59.000.686,C:\source\SINQIA\Unit1.pas=C:\source\SINQIA\ufrmCadClientes.pas</Transaction>
+    <Transaction>2025/02/02 17:34:18.000.140,=C:\source\SINQIA\Unit1.pas</Transaction>
+    <Transaction>2025/02/02 17:34:52.000.831,C:\source\SINQIA\ufrmCadCidades.dfm=C:\source\SINQIA\Unit1.dfm</Transaction>
+    <Transaction>2025/02/02 17:34:52.000.831,C:\source\SINQIA\ufrmCadCidades.pas=C:\source\SINQIA\Unit1.pas</Transaction>
+    <Transaction>2025/02/03 14:51:53.000.194,=C:\source\SINQIA\Unit1.pas</Transaction>
+    <Transaction>2025/02/03 14:52:28.000.719,C:\source\SINQIA\Unit1.pas=C:\source\SINQIA\ufrmRepClientes.pas</Transaction>
+    <Transaction>2025/02/03 14:52:28.000.719,C:\source\SINQIA\Unit1.dfm=C:\source\SINQIA\ufrmRepClientes.dfm</Transaction>
+    <Transaction>2025/02/03 16:16:41.000.343,=C:\source\SINQIA\Unit1.pas</Transaction>
+    <Transaction>2025/02/03 16:19:36.000.847,C:\source\SINQIA\Unit1.pas=C:\source\SINQIA\uRepClientes.pas</Transaction>
+    <Transaction>2025/02/03 16:19:36.000.848,C:\source\SINQIA\Unit1.dfm=C:\source\SINQIA\uRepClientes.dfm</Transaction>
+    <Transaction>2025/02/03 21:53:07.000.145,=C:\source\SINQIA\Unit1.pas</Transaction>
+    <Transaction>2025/02/03 22:25:41.000.921,C:\source\SINQIA\Unit1.dfm=C:\source\SINQIA\uRepClientesporCidade.dfm</Transaction>
+    <Transaction>2025/02/03 22:25:41.000.919,C:\source\SINQIA\Unit1.pas=C:\source\SINQIA\uRepClientesporCidade.pas</Transaction>
+    <Transaction>2025/02/03 23:49:27.000.220,=C:\source\SINQIA\Unit1.pas</Transaction>
+    <Transaction>2025/02/04 00:25:26.000.145,C:\source\SINQIA\Unit1.dfm=C:\source\SINQIA\uRepCidades.dfm</Transaction>
+    <Transaction>2025/02/04 00:25:26.000.145,C:\source\SINQIA\Unit1.pas=C:\source\SINQIA\uRepCidades.pas</Transaction>
+  </Transactions>
+</BorlandProject>
